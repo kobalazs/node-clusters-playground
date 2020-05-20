@@ -1,8 +1,16 @@
 const http = require('http');
 
 const messageHandler = (msg) => {
-  if (msg.cmd && msg.cmd === 'ping') {
-    console.log(`Pong ${process.pid}`);
+  switch (msg.cmd) {
+    case 'ping':
+      console.log(`Pong ${process.pid}`);
+      break;
+    case 'shutdown':
+      if (Math.random() > 0.5) {
+        console.log(`Worker ${process.pid} exited gracefully`);
+        process.exit(0);
+      }
+      break;
   }
 }
 
