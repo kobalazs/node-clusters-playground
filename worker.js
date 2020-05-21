@@ -1,7 +1,7 @@
 const http = require('http');
 
-const messageHandler = (msg) => {
-  switch (msg.cmd) {
+const messageHandler = (message) => {
+  switch (message.command) {
     case 'ping':
       console.log(`Pong ${process.pid}`);
       break;
@@ -12,17 +12,17 @@ const messageHandler = (msg) => {
       }
       break;
   }
-}
+};
 
 module.exports = () => {
-  http.createServer((req, res) => {
-    console.log(`Worker ${process.pid} handled an HTTP request`);
-    process.send({ cmd: 'notifyRequest' });
-    res.writeHead(200);
-    res.end('Hello World\n');
-  }).listen(3000);
+  console.log(`Worker ${process.pid} started`);
 
   process.on('message', messageHandler);
 
-  console.log(`Worker ${process.pid} started`);
+  http.createServer((req, res) => {
+    console.log(`Worker ${process.pid} handled an HTTP request`);
+    process.send({ command: 'countRequest' });
+    res.writeHead(200);
+    res.end('Hello World\n');
+  }).listen(3000);
 };
