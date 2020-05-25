@@ -6,6 +6,7 @@ services:
       - ./src:/srv/app
     ports:
       - 1337:1337
+      - 9229:9229
     environment:
       DATABASE_CLIENT: mongo
       DATABASE_HOST: database
@@ -13,6 +14,7 @@ services:
       DATABASE_NAME: app
       DATABASE_USERNAME: strapi
       DATABASE_PASSWORD: secret
+    command: npm --node-options --inspect=0.0.0.0:9229 run develop
   database:
     image: mongo
     volumes:
