@@ -1,9 +1,12 @@
 version: '3.4'
 services:
   app:
-    image: strapi/strapi
+    build:
+      context: .
+      dockerfile: build/Dockerfile
     volumes:
       - ./src:/srv/app
+      - ./log:/var/log
     ports:
       - 1337:1337
     environment:
