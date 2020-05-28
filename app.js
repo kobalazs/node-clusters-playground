@@ -1,10 +1,13 @@
-const cluster = require('cluster');
+const http = require('http');
 
-const master = require('./master');
-const worker = require('./worker');
+http.createServer((req, res) => {
+  console.log(`Worker ${process.pid} handled an HTTP request`);
+  process.send({ command: 'countRequest' });
+  res.writeHead(200);
+  res.end('Hello World\n');
+}).listen(3000);
 
-if (cluster.isMaster) {
-  master();
-} else {
-  worker();
-}
+process.on('SIGINT', () => {
+  console.log(`Worker ${process.pid} shut down gracefully`);
+  process.exit(0);
+});
