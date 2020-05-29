@@ -1,9 +1,17 @@
 module.exports = {
-  apps: [
+  apps : [
     {
-      name: 'app',
-      script: './app.js',
-      watch: '.'
+      script: 'app.js',
+      watch: '.',
+      ignore_watch: ['node_modules', 'uploads'],
+      watch_delay: 1000,
+      watch_options: {
+        followSymlinks: false
+      },
+      instances: 2,
+      log_file: 'app.log',
+      time: true,
+      exp_backoff_restart_delay: 100,
     }
   ],
 

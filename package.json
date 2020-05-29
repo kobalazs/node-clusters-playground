@@ -1,0 +1,23 @@
+{
+  "name": "node-clusters-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobalazs/node-clusters-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kobalazs/node-clusters-playground/issues"
+  },
+  "homepage": "https://github.com/kobalazs/node-clusters-playground#readme",
+  "dependencies": {
+    "pm2": "^4.4.0"
+  }
+}
