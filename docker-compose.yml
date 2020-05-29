@@ -4,22 +4,10 @@ services:
     build:
       context: .
       dockerfile: build/Dockerfile
-    volumes:
-      - ./src:/srv/app
-      - ./log:/var/log
     ports:
-      - 1337:1337
-    environment:
-      DATABASE_CLIENT: mongo
-      DATABASE_HOST: database
-      DATABASE_PORT: 27017
-      DATABASE_NAME: app
-      DATABASE_USERNAME: strapi
-      DATABASE_PASSWORD: secret
-  database:
-    image: mongo
+      - '1337:1337'
     volumes:
-      - '/data/db'
+      - './src:/app'
+      - '/app/node_modules'
     environment:
-      MONGO_INITDB_ROOT_USERNAME: strapi
-      MONGO_INITDB_ROOT_PASSWORD: secret
+      NODE_ENV: development

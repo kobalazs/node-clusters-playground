@@ -1,5 +1,16 @@
-FROM strapi/strapi
+FROM node:lts-alpine3.11
 
-RUN npm install pm2 -g
+  WORKDIR /app
+  
+  COPY src/package.json ./
 
-CMD [ "pm2-runtime", "start", "start.sh" ]
+  RUN apk add yarn
+  RUN yarn install
+  RUN yarn global add pm2
+
+  COPY src/ ./
+  EXPOSE 1337
+
+  RUN apk add bash
+  CMD [ "pm2-runtime", "ecosystem.config.js" ]
+  # CMD [ "yarn", "develop" ]
